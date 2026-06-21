@@ -3,7 +3,22 @@ package tango;
 import tango.app.TangoApplication;
 import tango.solver.SolverType;
 
+/**
+ * Ponto de entrada do Tango Solver.
+ *
+ * <p>Sem argumentos, abre o menu interativo. Com argumentos, executa o arquivo
+ * e o algoritmo informados.</p>
+ */
 public class Main {
+    /** Impede a criacao de instancias da classe de entrada. */
+    private Main() {
+    }
+
+    /**
+     * Inicia a aplicacao e apresenta erros esperados em formato amigavel.
+     *
+     * @param args caminho do arquivo e, opcionalmente, nome do algoritmo
+     */
     public static void main(String[] args) {
         TangoApplication application = new TangoApplication();
 
@@ -23,10 +38,18 @@ public class Main {
         }
     }
 
+    /**
+     * Imprime os modos de uso, algoritmos e formato resumido da entrada.
+     */
     public static void printUsage() {
         System.out.println("TP2 FPAA - Tango Solver");
         System.out.println();
-        System.out.println("Uso:");
+        System.out.println("Modo interativo:");
+        System.out.println("  java -cp out tango.Main");
+        System.out.println("  Permite listar, gerar, criar, importar e resolver tabuleiros.");
+        System.out.println("  O catalogo fica em examples/tabuleiros.");
+        System.out.println();
+        System.out.println("Modo por comando:");
         System.out.println("  java -cp out tango.Main <arquivo-entrada> [algoritmo]");
         System.out.println();
         System.out.println("Algoritmos disponiveis:");
@@ -35,8 +58,9 @@ public class Main {
         }
         System.out.println();
         System.out.println("Exemplo:");
-        System.out.println("  java -cp out tango.Main examples/tabuleiro-6x6.txt backtracking");
+        System.out.println("  java -cp out tango.Main examples/tabuleiros/manual-001-20260620-153012.txt backtracking");
         System.out.println();
-        System.out.println("Se executar sem argumentos, o programa abre um menu interativo.");
+        System.out.println("Formato externo: size=<par>, secao board: com . S L e secao opcional constraints:.");
+        System.out.println("Arquivos externos passam por validacao antes da busca.");
     }
 }

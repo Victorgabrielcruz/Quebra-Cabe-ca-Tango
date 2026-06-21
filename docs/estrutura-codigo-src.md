@@ -8,13 +8,13 @@ O fluxo pensado para o codigo Java e:
 
 1. `Main` inicia o programa.
 2. `Main` chama `TangoApplication`.
-3. `TangoApplication` le os argumentos do terminal.
-4. `InputReader` carrega o tabuleiro inicial a partir de um arquivo.
-5. `BoardPrinter` imprime o tabuleiro inicial.
-6. `SolverFactory` escolhe entre forca bruta e backtracking.
-7. O solver escolhido executa a resolucao.
-8. `SolverResult` guarda o resultado.
-9. `BoardPrinter` imprime o tabuleiro final.
+3. `TangoApplication` abre o menu ou le os argumentos do terminal.
+4. O menu lista, gera, cria ou importa tabuleiros pelo `BoardCatalog`.
+5. `InputReader` carrega o tabuleiro e `BoardInputValidator` verifica a entrada.
+6. `BoardPrinter` imprime o tabuleiro inicial.
+7. `SolverFactory` escolhe entre forca bruta e backtracking.
+8. O solver escolhido executa a resolucao.
+9. `SolverResult` guarda o resultado e `BoardPrinter` imprime o tabuleiro final.
 
 ## Estrutura Dentro de `src`
 
@@ -30,6 +30,8 @@ src/
           InputReader.java
           BoardPrinter.java
           InputGenerator.java
+          BoardCatalog.java
+          BoardInputValidator.java
         model/
           Board.java
           CellValue.java
@@ -60,11 +62,6 @@ O que faz:
 - mostra instrucoes de uso quando o usuario digita `--help`;
 - trata erros simples de uso, como algoritmo invalido.
 
-Relevancia para o TP2:
-
-- e o ponto de entrada do programa;
-- permite executar o trabalho pelo terminal, como pedido no enunciado;
-- organiza a escolha entre `forca-bruta` e `backtracking`.
 
 ## `src/main/java/tango/app/TangoApplication.java`
 
@@ -73,9 +70,11 @@ Classe que coordena o fluxo geral do programa.
 O que faz:
 
 - interpreta os argumentos recebidos pelo `Main`;
-- identifica o caminho do arquivo de entrada;
+- apresenta uma interface para listar, gerar, criar e importar tabuleiros;
+- usa o catalogo `examples/tabuleiros` no fluxo interativo;
 - define qual algoritmo sera usado;
 - chama `InputReader` para ler o tabuleiro;
+- valida a entrada antes de salvar ou resolver;
 - chama `BoardPrinter` para imprimir o tabuleiro inicial;
 - chama `SolverFactory` para criar o algoritmo escolhido;
 - executa o solver;
@@ -92,7 +91,7 @@ Relevancia para o TP2:
 
 Classe responsavel pela leitura do arquivo de entrada.
 
-O que deve fazer quando for implementada:
+O que faz:
 
 - abrir o arquivo informado no terminal;
 - ler o tamanho do tabuleiro;
@@ -111,7 +110,7 @@ Relevancia para o TP2:
 
 Classe responsavel pela impressao do tabuleiro no terminal.
 
-O que deve fazer quando for implementada:
+O que faz:
 
 - imprimir o tabuleiro inicial;
 - imprimir o tabuleiro final resolvido;
@@ -126,20 +125,51 @@ Relevancia para o TP2:
 
 ## `src/main/java/tango/io/InputGenerator.java`
 
-Classe responsavel por gerar arquivos-base de entrada.
+Classe responsavel por gerar tabuleiros aleatorios solucionaveis.
 
 O que faz:
 
-- recebe caminho de destino;
-- recebe tamanho do tabuleiro;
-- valida se o tamanho e positivo e par;
-- cria um arquivo com tabuleiro vazio;
-- inclui exemplos comentados de restricoes.
+- recebe tamanho e quantidades de dicas e restricoes;
+- constroi uma solucao completa com escolhas aleatorias;
+- seleciona dicas em posicoes embaralhadas;
+- deriva restricoes validas entre celulas vizinhas.
 
 Relevancia para o TP2:
 
-- facilita criar arquivos de teste;
-- ajuda a padronizar o formato que sera usado pelo leitor de entrada.
+- produz exemplos variados sem depender de edicao externa;
+- garante que os exemplos automaticos possuem pelo menos uma solucao.
+
+## `src/main/java/tango/io/BoardCatalog.java`
+
+Classe responsavel pelo catalogo `examples/tabuleiros`.
+
+O que faz:
+
+- lista os arquivos disponiveis;
+- serializa tabuleiros no formato oficial;
+- cria nomes sequenciais para origens automatica, manual e importada;
+- inclui data e hora em cada nome.
+
+Relevancia para o TP2:
+
+- centraliza e organiza os exemplos usados na demonstracao;
+- permite selecionar entradas pela interface sem digitar caminhos.
+
+## `src/main/java/tango/io/BoardInputValidator.java`
+
+Classe responsavel por validar entradas antes da busca.
+
+O que faz:
+
+- rejeita trios iguais ja formados;
+- rejeita excesso de Sol ou Lua em linhas e colunas;
+- verifica restricoes decididas;
+- exige que restricoes conectem celulas vizinhas.
+
+Relevancia para o TP2:
+
+- impede que arquivos defeituosos prossigam para os algoritmos;
+- fornece mensagens que indicam a categoria da regra quebrada.
 
 ## `src/main/java/tango/model/Board.java`
 
@@ -288,14 +318,16 @@ Relevancia para o TP2:
 
 ## `src/main/java/tango/solver/BruteForceSolver.java`
 
-Classe reservada para a implementacao da forca bruta.
+Classe que implementa a forca bruta.
 
-O que deve fazer quando for implementada:
+O que faz:
 
 - gerar combinacoes para as celulas vazias;
 - testar os tabuleiros completos;
 - verificar se alguma combinacao respeita todas as regras;
 - contar quantos estados foram testados.
+- preservar as dicas trabalhando sobre uma copia;
+- validar apenas combinacoes completas, sem poda parcial.
 
 Relevancia para o TP2:
 
@@ -305,15 +337,16 @@ Relevancia para o TP2:
 
 ## `src/main/java/tango/solver/BacktrackingSolver.java`
 
-Classe reservada para a implementacao do backtracking.
+Classe que implementa o backtracking.
 
-O que deve fazer quando for implementada:
+O que faz:
 
 - escolher uma celula vazia;
 - tentar preencher com Sol ou Lua;
 - verificar se a escolha ainda respeita as regras parcialmente;
 - desfazer escolhas invalidas;
 - continuar recursivamente ate encontrar uma solucao ou esgotar as possibilidades.
+- contar atribuicoes candidatas com o mesmo criterio da forca bruta.
 
 Relevancia para o TP2:
 
@@ -328,7 +361,9 @@ Main.java              -> entrada inicial do programa
 TangoApplication.java  -> fluxo principal e integracao
 InputReader.java       -> leitura do arquivo de entrada
 BoardPrinter.java      -> impressao no terminal
-InputGenerator.java    -> geracao de arquivos de entrada
+InputGenerator.java    -> geracao aleatoria de tabuleiros solucionaveis
+BoardCatalog.java      -> catalogo, nomes e persistencia dos arquivos
+BoardInputValidator.java -> validacao das entradas antes da busca
 Board.java             -> representacao do tabuleiro
 CellValue.java         -> valores possiveis das celulas
 Position.java          -> coordenadas do tabuleiro

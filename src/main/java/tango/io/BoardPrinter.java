@@ -4,12 +4,25 @@ import tango.model.Board;
 import tango.model.Constraint;
 import tango.model.Position;
 
+/**
+ * Imprime a grade e as restricoes de um tabuleiro no terminal.
+ */
 public class BoardPrinter {
+    /** Cria um formatador de saida sem estado. */
+    public BoardPrinter() {
+    }
+
+    /**
+     * Imprime o estado completo do problema, incluindo indices e restricoes.
+     *
+     * @param board tabuleiro exibido
+     */
     public void print(Board board) {
         printGrid(board);
         printConstraints(board);
     }
 
+    /** Imprime indices e valores da matriz. */
     private void printGrid(Board board) {
         System.out.print("   ");
 
@@ -30,6 +43,7 @@ public class BoardPrinter {
         }
     }
 
+    /** Imprime todas as relacoes ou informa que a lista esta vazia. */
     private void printConstraints(Board board) {
         if (board.getConstraints().isEmpty()) {
             System.out.println("Restricoes: nenhuma");
@@ -48,6 +62,7 @@ public class BoardPrinter {
         }
     }
 
+    /** Converte uma coordenada para a notacao usada no terminal. */
     private String formatPosition(Position position) {
         return "(" + position.getRow() + ", " + position.getColumn() + ")";
     }

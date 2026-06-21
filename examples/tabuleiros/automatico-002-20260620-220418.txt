@@ -1,0 +1,24 @@
+# Tabuleiro Tango criado pela interface do projeto
+# Origem: automatico
+# Simbolos: . vazio, S Sol, L Lua
+size=8
+board:
+...S.S..
+....S.L.
+.S...S..
+.....LS.
+.SL.....
+SL...L..
+...L.S..
+.L......
+constraints:
+4 3 4 4 x
+1 5 2 5 x
+7 1 7 2 =
+2 0 3 0 =
+5 1 6 1 x
+2 5 3 5 x
+0 5 1 5 x
+2 4 2 5 x
+2 6 2 7 x
+1 4 2 4 x

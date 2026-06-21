@@ -11,7 +11,25 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
+/**
+ * Converte um arquivo textual no formato do projeto em um {@link Board}.
+ *
+ * <p>O leitor valida a estrutura e os simbolos. Regras semanticamente
+ * verificaveis ficam sob responsabilidade de {@link BoardInputValidator}.</p>
+ */
 public class InputReader {
+    /** Cria um leitor de arquivos sem estado. */
+    public InputReader() {
+    }
+
+    /**
+     * Le e interpreta um arquivo de entrada.
+     *
+     * @param inputPath caminho do arquivo
+     * @return tabuleiro representado pelo conteudo
+     * @throws IllegalArgumentException se o arquivo nao puder ser lido ou seu
+     *         formato for invalido
+     */
     public Board read(Path inputPath) {
         List<String> lines = readLines(inputPath);
         int size = readSize(lines);
@@ -23,6 +41,7 @@ public class InputReader {
         return board;
     }
 
+    /** Le todas as linhas e uniformiza falhas de acesso como erro de entrada. */
     private List<String> readLines(Path inputPath) {
         try {
             return Files.readAllLines(inputPath);
@@ -31,6 +50,7 @@ public class InputReader {
         }
     }
 
+    /** Procura e converte a declaracao obrigatoria {@code size=}. */
     private int readSize(List<String> lines) {
         for (String line : lines) {
             String normalizedLine = normalize(line);
@@ -44,6 +64,7 @@ public class InputReader {
         throw new IllegalArgumentException("o arquivo precisa conter uma linha size=<numero>.");
     }
 
+    /** Le exatamente a quantidade de linhas definida pelo tamanho. */
     private void readBoard(List<String> lines, Board board) {
         int boardStart = findSection(lines, "board:");
         int row = 0;
@@ -72,6 +93,7 @@ public class InputReader {
         }
     }
 
+    /** Converte os caracteres de uma linha em valores de celula. */
     private void readBoardRow(String line, Board board, int row) {
         if (line.length() != board.getSize()) {
             throw new IllegalArgumentException("linha " + row + " do tabuleiro possui tamanho invalido.");
@@ -83,6 +105,7 @@ public class InputReader {
         }
     }
 
+    /** Le a secao opcional de restricoes ate a proxima secao ou fim. */
     private void readConstraints(List<String> lines, Board board) {
         int constraintsStart = findOptionalSection(lines, "constraints:");
 
@@ -105,10 +128,11 @@ public class InputReader {
         }
     }
 
+    /** Converte cinco campos textuais em uma restricao tipada. */
     private Constraint parseConstraint(String line) {
         String[] parts = line.split("\\s+");
 
-        if (parts.length != 5) {
+        if (parts.length != 5 || parts[4].length() != 1) {
             throw new IllegalArgumentException("restricao invalida: " + line);
         }
 
@@ -123,6 +147,7 @@ public class InputReader {
         return new Constraint(firstPosition, secondPosition, type);
     }
 
+    /** Localiza uma secao obrigatoria ou informa sua ausencia. */
     private int findSection(List<String> lines, String section) {
         int index = findOptionalSection(lines, section);
 
@@ -133,6 +158,7 @@ public class InputReader {
         return index;
     }
 
+    /** Localiza uma secao sem diferenciar maiusculas e minusculas. */
     private int findOptionalSection(List<String> lines, String section) {
         for (int index = 0; index < lines.size(); index++) {
             if (normalize(lines.get(index)).equalsIgnoreCase(section)) {
@@ -143,20 +169,24 @@ public class InputReader {
         return -1;
     }
 
+    /** Remove comentarios iniciados por {@code #} e espacos externos. */
     private String normalize(String line) {
         int commentStart = line.indexOf('#');
         String lineWithoutComment = commentStart >= 0 ? line.substring(0, commentStart) : line;
         return lineWithoutComment.trim();
     }
 
+    /** Indica se uma linha normalizada nao possui conteudo. */
     private boolean shouldIgnore(String line) {
         return line.isEmpty();
     }
 
+    /** Reconhece cabecalhos terminados por dois-pontos. */
     private boolean isSection(String line) {
         return line.endsWith(":");
     }
 
+    /** Converte um inteiro usando uma mensagem adequada ao campo. */
     private int parseInteger(String value, String errorMessage) {
         try {
             return Integer.parseInt(value);

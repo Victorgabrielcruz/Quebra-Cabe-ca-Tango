@@ -104,11 +104,10 @@ Entregaveis:
 
 ## Checklist de Integracao
 
-- [ ] Todos os arquivos Java compilam juntos.
-- [ ] O programa imprime o tabuleiro inicial.
-- [ ] O programa encontra uma solucao valida.
-- [ ] O programa imprime o tabuleiro final.
-- [ ] Existe exemplo de execucao no terminal.
+- [x] Todos os arquivos Java compilam juntos.
+- [x] O programa imprime o tabuleiro inicial.
+- [x] O programa encontra uma solucao valida.
+- [x] O programa imprime o tabuleiro final.
+- [x] Existe exemplo de execucao no terminal.
 - [ ] A documentacao tem no maximo 10 paginas.
 - [ ] Todos revisaram a parte final antes da entrega.
-

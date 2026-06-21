@@ -1,0 +1,10 @@
+# Tabuleiro Tango criado pela interface do projeto
+# Origem: manual
+# Simbolos: . vazio, S Sol, L Lua
+size=4
+board:
+.SLL
+SL.L
+L.LS
+LLS.
+constraints:
