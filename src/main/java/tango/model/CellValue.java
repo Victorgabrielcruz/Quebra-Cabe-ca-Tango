@@ -3,15 +3,12 @@ package tango.model;
 /**
  * Valores que uma celula do tabuleiro pode assumir.
  *
- * <p>{@link #VAZIO} representa uma decisao ainda nao tomada e nao um terceiro
- * simbolo do quebra-cabeca.</p>
+ * {@link #VAZIO} representa uma decisao ainda nao tomada e nao um terceiro
+ * simbolo do quebra-cabeca.
  */
 public enum CellValue {
-    /** Celula ainda nao preenchida, representada por {@code .}. */
     VAZIO('.'),
-    /** Simbolo Sol, representado por {@code S}. */
     SOL('S'),
-    /** Simbolo Lua, representado por {@code L}. */
     LUA('L');
 
     /** Caractere persistido e exibido para o valor. */

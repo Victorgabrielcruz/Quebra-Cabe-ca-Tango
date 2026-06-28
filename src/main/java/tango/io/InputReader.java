@@ -14,11 +14,10 @@ import java.util.List;
 /**
  * Converte um arquivo textual no formato do projeto em um {@link Board}.
  *
- * <p>O leitor valida a estrutura e os simbolos. Regras semanticamente
- * verificaveis ficam sob responsabilidade de {@link BoardInputValidator}.</p>
+ * O leitor valida a estrutura e os simbolos. Regras semanticamente
+ * verificaveis ficam sob responsabilidade de {@link BoardInputValidator}.
  */
 public class InputReader {
-    /** Cria um leitor de arquivos sem estado. */
     public InputReader() {
     }
 

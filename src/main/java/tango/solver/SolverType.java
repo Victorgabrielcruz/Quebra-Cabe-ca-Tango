@@ -4,15 +4,11 @@ package tango.solver;
  * Estrategias de busca disponiveis na interface.
  */
 public enum SolverType {
-    /** Busca exaustiva que valida apenas combinacoes completas. */
     BRUTE_FORCE("forca-bruta"),
-    /** Busca incremental que poda estados parciais invalidos. */
     BACKTRACKING("backtracking");
 
-    /** Nome aceito pela interface de linha de comando. */
     private final String argumentName;
 
-    /** Associa o tipo ao argumento textual. */
     SolverType(String argumentName) {
         this.argumentName = argumentName;
     }

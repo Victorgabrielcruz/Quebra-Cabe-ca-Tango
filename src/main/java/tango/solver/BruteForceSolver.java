@@ -12,11 +12,10 @@ import tango.validation.BoardValidator;
 /**
  * Busca exaustiva que gera todas as combinacoes das celulas vazias.
  *
- * <p>Nenhuma regra parcial e usada para poda. O tabuleiro e validado somente
- * quando uma combinacao estiver completa.</p>
+ * Nenhuma regra parcial e usada para poda. O tabuleiro e validado somente
+ * quando uma combinacao estiver completa.
  */
 public class BruteForceSolver implements Solver {
-    /** Validador aplicado somente nas folhas completas da busca. */
     private final BoardValidator validator;
 
     /**

@@ -15,7 +15,6 @@ import tango.model.Position;
  * somente estados que ja nao podem conduzir a uma solucao.</p>
  */
 public class BoardValidator {
-    /** Cria um validador sem estado. */
     public BoardValidator() {
     }
 

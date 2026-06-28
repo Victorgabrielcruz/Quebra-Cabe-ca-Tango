@@ -15,8 +15,8 @@ import tango.validation.BoardValidator;
 /**
  * Gera quebra-cabecas aleatorios que possuem pelo menos uma solucao.
  *
- * <p>Primeiro constroi uma solucao completa usando escolhas embaralhadas e
- * validacao parcial. Depois revela dicas e deriva restricoes dessa solucao.</p>
+ * Primeiro constroi uma solucao completa usando escolhas embaralhadas e
+ * validacao parcial. Depois revela dicas e deriva restricoes dessa solucao.
  */
 public class InputGenerator {
     /** Fonte usada para embaralhar candidatos, dicas e restricoes. */

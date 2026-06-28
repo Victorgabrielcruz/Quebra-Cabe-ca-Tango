@@ -8,14 +8,12 @@ import tango.validation.BoardValidator;
 /**
  * Valida um tabuleiro de entrada antes que ele seja salvo ou resolvido.
  *
- * <p>A verificacao e parcial: celulas vazias sao permitidas, mas violacoes ja
- * determinadas sao rejeitadas com mensagens direcionadas ao usuario.</p>
+ * A verificacao e parcial: celulas vazias sao permitidas, mas violacoes ja
+ * determinadas sao rejeitadas com mensagens direcionadas ao usuario.
  */
 public class BoardInputValidator {
-    /** Validador das regras que podem ser avaliadas em estado parcial. */
     private final BoardValidator validator = new BoardValidator();
 
-    /** Cria um validador de entradas com as regras padrao. */
     public BoardInputValidator() {
     }
 
@@ -45,7 +43,7 @@ public class BoardInputValidator {
         }
     }
 
-    /** Exige distancia de Manhattan igual a um para cada restricao. */
+    /** Exige distancia igual a um para cada restricao. */
     private void validateConstraintPositions(Board board) {
         for (Constraint constraint : board.getConstraints()) {
             Position first = constraint.getFirstPosition();

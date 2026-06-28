@@ -4,7 +4,6 @@ package tango.solver;
  * Centraliza a criacao da implementacao associada a cada {@link SolverType}.
  */
 public class SolverFactory {
-    /** Cria uma factory sem estado. */
     public SolverFactory() {
     }
 

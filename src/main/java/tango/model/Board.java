@@ -7,15 +7,12 @@ import java.util.List;
 /**
  * Estado de um quebra-cabeca Tango, incluindo grade e restricoes.
  *
- * <p>O tamanho e as restricoes definem o problema, enquanto as celulas podem
- * ser alteradas pelos algoritmos durante a busca.</p>
+ * O tamanho e as restricoes definem o problema, enquanto as celulas podem
+ * ser alteradas pelos algoritmos durante a busca.
  */
 public class Board {
-    /** Dimensao fixa da grade quadrada. */
     private final int size;
-    /** Matriz mutavel com os valores atuais. */
     private final CellValue[][] cells;
-    /** Restricoes associadas a esta instancia do problema. */
     private final List<Constraint> constraints;
 
     /**

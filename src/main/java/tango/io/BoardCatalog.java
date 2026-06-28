@@ -18,15 +18,10 @@ import tango.model.Position;
 /**
  * Persiste e lista os tabuleiros mantidos no catalogo do projeto.
  *
- * <p>Os nomes registram origem, sequencia e instante de criacao, por exemplo
- * {@code automatico-001-20260620-153012.txt}.</p>
  */
 public class BoardCatalog {
-    /** Pasta oficial usada pela interface. */
     private static final Path DEFAULT_CATALOG_DIRECTORY = Path.of("examples", "tabuleiros");
-    /** Formato ordenavel de data e hora usado nos nomes. */
     private static final DateTimeFormatter TIMESTAMP_FORMAT = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
-    /** Pasta efetiva desta instancia, substituivel em testes. */
     private final Path directory;
 
     /**

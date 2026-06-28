@@ -13,7 +13,6 @@ import tango.validation.BoardValidator;
  * Busca por retrocesso que elimina estados parciais invalidos.
  */
 public class BacktrackingSolver implements Solver {
-    /** Validador usado tanto nas podas quanto na confirmacao final. */
     private final BoardValidator validator;
 
     /**

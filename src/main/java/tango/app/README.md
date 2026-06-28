@@ -10,7 +10,6 @@ Este pacote contem a camada que coordena o fluxo principal da aplicacao.
 
 - Recebe os argumentos vindos de `Main`.
 - Abre um menu interativo quando o programa roda sem argumentos.
-- Verifica se o usuario pediu ajuda com `--help` ou `-h`.
 - Valida se a quantidade de argumentos esta correta.
 - Lista os arquivos existentes no catalogo interno.
 - Gera tabuleiros automaticos aleatorios.

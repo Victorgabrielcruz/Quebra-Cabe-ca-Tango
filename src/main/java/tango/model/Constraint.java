@@ -4,11 +4,8 @@ package tango.model;
  * Restricao imutavel entre duas posicoes do tabuleiro.
  */
 public class Constraint {
-    /** Primeira extremidade da relacao. */
     private final Position firstPosition;
-    /** Segunda extremidade da relacao. */
     private final Position secondPosition;
-    /** Regra aplicada entre as extremidades. */
     private final ConstraintType type;
 
     /**

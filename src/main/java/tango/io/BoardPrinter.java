@@ -8,7 +8,6 @@ import tango.model.Position;
  * Imprime a grade e as restricoes de um tabuleiro no terminal.
  */
 public class BoardPrinter {
-    /** Cria um formatador de saida sem estado. */
     public BoardPrinter() {
     }
 

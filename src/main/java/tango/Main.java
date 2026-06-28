@@ -6,8 +6,8 @@ import tango.solver.SolverType;
 /**
  * Ponto de entrada do Tango Solver.
  *
- * <p>Sem argumentos, abre o menu interativo. Com argumentos, executa o arquivo
- * e o algoritmo informados.</p>
+ * Sem argumentos, abre o menu interativo. Com argumentos, executa o arquivo
+ * e o algoritmo informados.
  */
 public class Main {
     /** Impede a criacao de instancias da classe de entrada. */

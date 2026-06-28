@@ -4,9 +4,7 @@ package tango.model;
  * Coordenada imutavel de uma celula do tabuleiro.
  */
 public class Position {
-    /** Indice imutavel da linha. */
     private final int row;
-    /** Indice imutavel da coluna. */
     private final int column;
 
     /**

@@ -6,9 +6,7 @@ import tango.model.Board;
  * Resultado imutavel produzido por uma estrategia de busca.
  */
 public class SolverResult {
-    /** Solucao encontrada, ou {@code null}. */
     private final Board solvedBoard;
-    /** Numero de atribuicoes candidatas realizadas. */
     private final long visitedStates;
 
     /**
