@@ -19,9 +19,7 @@ import tango.validation.BoardValidator;
  * validacao parcial. Depois revela dicas e deriva restricoes dessa solucao.
  */
 public class InputGenerator {
-    /** Fonte usada para embaralhar candidatos, dicas e restricoes. */
     private final Random random;
-    /** Validador usado durante a construcao da solucao-base. */
     private final BoardValidator validator;
 
     /**

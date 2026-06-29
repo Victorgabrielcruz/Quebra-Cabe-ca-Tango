@@ -12,12 +12,15 @@ import java.nio.file.Path;
 import java.util.List;
 
 /**
- * Converte um arquivo textual no formato do projeto em um {@link Board}.
+ * Converte um arquivo textual no formato aceito pela aplicacao em um {@link Board}.
  *
  * O leitor valida a estrutura e os simbolos. Regras semanticamente
  * verificaveis ficam sob responsabilidade de {@link BoardInputValidator}.
  */
 public class InputReader {
+    /**
+     * Cria um leitor para arquivos no formato aceito pela aplicacao.
+     */
     public InputReader() {
     }
 

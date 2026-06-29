@@ -16,7 +16,7 @@ import tango.model.Constraint;
 import tango.model.Position;
 
 /**
- * Persiste e lista os tabuleiros mantidos no catalogo do projeto.
+ * Persiste e lista os tabuleiros mantidos no catalogo interno.
  *
  */
 public class BoardCatalog {
@@ -108,7 +108,7 @@ public class BoardCatalog {
         return destination;
     }
 
-    /** Converte grade e restricoes para o formato textual do projeto. */
+    /** Converte grade e restricoes para o formato textual aceito pelo leitor. */
     private List<String> serialize(Board board, String origin) {
         java.util.ArrayList<String> lines = new java.util.ArrayList<>();
         lines.add("# Tabuleiro Tango criado pela interface do projeto");

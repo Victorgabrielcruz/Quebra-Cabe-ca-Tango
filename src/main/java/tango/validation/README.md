@@ -87,7 +87,3 @@ Os valores sao enums, portanto o codigo usa `==` e `!=` para comparar `CellValue
 ### Validacao de argumento
 
 Todos os metodos publicos chamam `requireBoard`. Essa verificacao falha imediatamente quando o tabuleiro e nulo e evita que um erro de integracao apareca mais tarde como uma excecao menos clara dentro de um laco.
-
-## Relevancia para o TP2
-
-Este pacote e importante porque separa as regras do jogo da mecanica dos algoritmos. A forca bruta podera usar `isFinalValid`, enquanto o backtracking podera usar `isPartialValid` para podar estados invalidos antes de completar o tabuleiro.

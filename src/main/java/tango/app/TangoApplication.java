@@ -24,7 +24,7 @@ import tango.solver.SolverType;
  * Fachada da aplicacao que integra interface, arquivos, validacao e solvers.
  */
 public class TangoApplication {
-    /** Le arquivos no formato textual do projeto. */
+    /** Le arquivos no formato textual aceito pela aplicacao. */
     private final InputReader inputReader;
     /** Produz quebra-cabecas aleatorios solucionaveis. */
     private final InputGenerator inputGenerator;
@@ -68,7 +68,6 @@ public class TangoApplication {
                     case "2" -> generateAutomaticBoard(scanner);
                     case "3" -> createManualBoard(scanner);
                     case "4" -> importExternalBoard(scanner);
-                    case "5" -> tango.Main.printUsage();
                     case "0" -> running = false;
                     default -> System.out.println("Opcao invalida. Escolha uma opcao do menu.");
                 }
@@ -86,32 +85,6 @@ public class TangoApplication {
         System.out.println("Programa encerrado.");
     }
 
-    /**
-     * Executa a aplicacao no modo de linha de comando.
-     *
-     * @param args caminho do arquivo e algoritmo opcional
-     * @throws IllegalArgumentException se os argumentos ou a entrada forem invalidos
-     */
-    public void run(String[] args) {
-        if (args.length == 0 || isHelp(args[0])) {
-            tango.Main.printUsage();
-            return;
-        }
-
-        if (args.length > 2) {
-            throw new IllegalArgumentException("foram informados argumentos demais.");
-        }
-
-        Path inputPath = Path.of(args[0]);
-        SolverType solverType = args.length == 2
-                ? SolverType.fromArgument(args[1])
-                : SolverType.BACKTRACKING;
-
-        Board initialBoard = inputReader.read(inputPath);
-        inputValidator.validate(initialBoard);
-        solveAndPrint(initialBoard, solverType);
-    }
-
     /** Executa uma estrategia e apresenta tabuleiro, resultado e estatistica. */
     private void solveAndPrint(Board initialBoard, SolverType solverType) {
         Solver solver = solverFactory.create(solverType);
@@ -119,7 +92,7 @@ public class TangoApplication {
         System.out.println("Tabuleiro inicial:");
         boardPrinter.print(initialBoard);
         System.out.println();
-        System.out.println("Algoritmo selecionado: " + solverType.getArgumentName());
+        System.out.println("Algoritmo selecionado: " + solverType.getDisplayName());
         System.out.println();
 
         SolverResult result = solver.solve(initialBoard);
@@ -135,11 +108,6 @@ public class TangoApplication {
         System.out.println("Estados visitados: " + result.getVisitedStates());
     }
 
-    /** Reconhece as duas formas aceitas para solicitar ajuda. */
-    private boolean isHelp(String value) {
-        return "--help".equals(value) || "-h".equals(value);
-    }
-
     /** Imprime as operacoes disponiveis no modo interativo. */
     private void printMenu() {
         System.out.println("TP2 FPAA - Tango Solver");
@@ -147,7 +115,6 @@ public class TangoApplication {
         System.out.println("2 - Gerar tabuleiro automatico");
         System.out.println("3 - Criar tabuleiro manualmente");
         System.out.println("4 - Importar arquivo externo");
-        System.out.println("5 - Ver ajuda");
         System.out.println("0 - Sair");
         System.out.print("Escolha uma opcao: ");
     }

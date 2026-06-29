@@ -39,7 +39,7 @@ public class SolverResult {
     }
 
     /**
-     * Consulta a medida de trabalho da busca.
+     * Consulta o custo da busca.
      *
      * @return quantidade de atribuicoes de Sol ou Lua testadas
      */

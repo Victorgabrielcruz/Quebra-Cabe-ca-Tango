@@ -1,6 +1,6 @@
 # Pacote `tango.model`
 
-Este pacote contem as classes que representam o problema do Tango. Ele e a parte central da modelagem feita para o trabalho, pois define como o tabuleiro, as celulas e as restricoes ficam armazenados no codigo.
+Este pacote contem as classes que representam o problema do Tango. Ele define como o tabuleiro, as celulas e as restricoes ficam armazenados no codigo.
 
 ## Arquivo `Board.java`
 
@@ -38,10 +38,6 @@ Este pacote contem as classes que representam o problema do Tango. Ele e a parte
 - **`copy` duplica a matriz e a lista:** tentativas de busca podem alterar a copia sem modificar o tabuleiro inicial. Os objetos `Constraint` podem ser compartilhados porque seus campos sao imutaveis.
 - **A validacao de posicao e centralizada:** leitura e escrita usam a mesma verificacao de limites, evitando comportamentos diferentes entre os metodos.
 
-### Relevancia para o trabalho
-
-Esta classe e a estrutura principal do problema. Entrada, saida, validacao, forca bruta e backtracking dependem dela para acessar o estado atual do tabuleiro.
-
 ## Arquivo `CellValue.java`
 
 `CellValue.java` representa os valores possiveis de uma celula.
@@ -66,10 +62,6 @@ Esta classe e a estrutura principal do problema. Entrada, saida, validacao, forc
 - **Cada valor conhece seu simbolo:** a representacao textual fica centralizada e e reutilizada pela entrada e pela saida.
 - **A conversao aceita maiusculas e minusculas:** normalizar o caractere torna o arquivo de entrada menos sensivel a digitacao sem aceitar simbolos desconhecidos.
 
-### Relevancia para o trabalho
-
-Este enum evita usar caracteres soltos pelo codigo. Assim, os algoritmos e validadores trabalham com nomes claros, como `SOL`, `LUA` e `VAZIO`.
-
 ## Arquivo `Position.java`
 
 `Position.java` representa uma coordenada do tabuleiro.
@@ -89,10 +81,6 @@ Este enum evita usar caracteres soltos pelo codigo. Assim, os algoritmos e valid
 - **Linha e coluna formam um objeto imutavel:** uma coordenada usada por uma restricao nao pode mudar acidentalmente durante a execucao.
 - **`equals` e `hashCode` consideram as duas coordenadas:** posicoes podem ser comparadas corretamente e tambem usadas futuramente em colecoes como `HashSet` ou `HashMap`.
 - **`toString` segue o formato `(linha, coluna)`:** mensagens e depuracao usam a mesma notacao exibida por `BoardPrinter`.
-
-### Relevancia para o trabalho
-
-Esta classe deixa o codigo mais organizado, pois uma posicao passa a ser um objeto com linha e coluna. Ela tambem facilita armazenar restricoes entre duas celulas.
 
 ## Arquivo `ConstraintType.java`
 
@@ -115,10 +103,6 @@ Esta classe deixa o codigo mais organizado, pois uma posicao passa a ser um obje
 - **O simbolo pertence ao enum:** parser e printer compartilham `=` e `x` sem duplicar constantes textuais.
 - **O `x` e normalizado para minusculo:** tanto `x` quanto `X` podem representar oposicao na entrada.
 
-### Relevancia para o trabalho
-
-Este enum representa diretamente as regras de igualdade e oposicao descritas no enunciado.
-
 ## Arquivo `Constraint.java`
 
 `Constraint.java` representa uma restricao entre duas posicoes do tabuleiro.
@@ -136,10 +120,6 @@ Este enum representa diretamente as regras de igualdade e oposicao descritas no 
 - **Uma restricao guarda duas posicoes e um tipo:** esse modelo representa tanto igualdade quanto oposicao sem criar duas classes quase identicas.
 - **O objeto e imutavel depois de criado:** regras do problema nao mudam durante a busca, portanto podem ser compartilhadas com seguranca entre copias do tabuleiro.
 - **O construtor valida dados nulos e `Board.addConstraint` valida limites:** cada classe verifica a parte que conhece; `Constraint` garante sua propria integridade e `Board` garante compatibilidade com a grade.
-
-### Relevancia para o trabalho
-
-Esta classe permite armazenar as relacoes `=` e `x` do tabuleiro de forma clara. Depois, os validadores e algoritmos poderao percorrer a lista de restricoes e verificar se elas estao sendo respeitadas.
 
 ## Relacao Entre as Classes
 

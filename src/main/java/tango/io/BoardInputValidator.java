@@ -14,6 +14,9 @@ import tango.validation.BoardValidator;
 public class BoardInputValidator {
     private final BoardValidator validator = new BoardValidator();
 
+    /**
+     * Cria um validador de entrada com o validador de regras padrao.
+     */
     public BoardInputValidator() {
     }
 

@@ -11,10 +11,13 @@ import tango.model.Position;
 /**
  * Implementa as regras de validade final e parcial de um tabuleiro Tango.
  *
- * <p>A validade parcial e usada como poda: aceita celulas vazias e rejeita
- * somente estados que ja nao podem conduzir a uma solucao.</p>
+ * A validade parcial e usada como poda: aceita celulas vazias e rejeita
+ * somente estados que ja nao podem conduzir a uma solucao.
  */
 public class BoardValidator {
+    /**
+     * Cria um validador das regras do Tango.
+     */
     public BoardValidator() {
     }
 

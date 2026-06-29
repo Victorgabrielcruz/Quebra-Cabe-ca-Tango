@@ -14,10 +14,6 @@ As classes deste pacote implementam uma interface comum, a selecao do algoritmo,
 - Obriga os algoritmos a receberem um `Board`.
 - Obriga os algoritmos a retornarem um `SolverResult`.
 
-### Relevancia para o trabalho
-
-Este arquivo permite que forca bruta e backtracking sejam usados do mesmo jeito pela aplicacao. Isso facilita a comparacao entre as duas tecnicas exigidas pelo enunciado.
-
 ### Decisao logica
 
 Foi definida uma interface unica porque a aplicacao deve trocar o algoritmo sem mudar o fluxo de leitura, impressao e exibicao do resultado. O contrato recebe o estado inicial e devolve o mesmo tipo de resultado para qualquer estrategia.
@@ -30,19 +26,13 @@ Foi definida uma interface unica porque a aplicacao deve trocar o algoritmo sem 
 
 - Define `BRUTE_FORCE`, usado para forca bruta.
 - Define `BACKTRACKING`, usado para backtracking.
-- Associa cada tipo a um nome digitavel no terminal:
+- Associa cada tipo a um nome exibido no terminal:
   - `forca-bruta`;
   - `backtracking`.
-- Possui o metodo `fromArgument(String value)`, que converte texto em tipo de algoritmo.
-- Lanca erro quando o usuario informa um algoritmo desconhecido.
-
-### Relevancia para o trabalho
-
-Este arquivo permite selecionar qual tecnica sera usada durante a execucao. Ele deixa explicito que o projeto suporta as duas abordagens pedidas: forca bruta e backtracking.
 
 ### Decisao logica
 
-Os nomes aceitos no terminal ficam associados ao enum para separar texto de interface dos tipos usados pelo codigo. A comparacao ignora maiusculas e minusculas, mas valores desconhecidos sao rejeitados para evitar a execucao silenciosa de um algoritmo diferente do solicitado.
+Os nomes exibidos ficam associados ao enum para separar texto de interface dos tipos usados pelo codigo. A selecao real acontece pelo menu, que converte uma opcao numerica para o tipo correto.
 
 ## Arquivo `SolverFactory.java`
 
@@ -53,10 +43,6 @@ Os nomes aceitos no terminal ficam associados ao enum para separar texto de inte
 - Recebe um `SolverType`.
 - Retorna `BruteForceSolver` quando o tipo e `BRUTE_FORCE`.
 - Retorna `BacktrackingSolver` quando o tipo e `BACKTRACKING`.
-
-### Relevancia para o trabalho
-
-Este arquivo centraliza a criacao dos algoritmos. Assim, a aplicacao principal nao precisa saber os detalhes de instanciacao de cada solver.
 
 ### Decisao logica
 
@@ -73,10 +59,6 @@ A factory concentra o `switch` que relaciona tipo e implementacao. Isso mantem `
 - Informa se uma solucao foi encontrada com `hasSolution()`.
 - Permite acessar o tabuleiro final com `getSolvedBoard()`.
 - Permite acessar a estatistica com `getVisitedStates()`.
-
-### Relevancia para o trabalho
-
-Este arquivo e importante porque o trabalho precisa mostrar o resultado final e tambem pode comparar a quantidade de estados visitados por forca bruta e backtracking. Essa estatistica ajuda na analise de complexidade.
 
 ### Decisoes logicas do resultado
 
@@ -108,10 +90,6 @@ Este arquivo e importante porque o trabalho precisa mostrar o resultado final e 
 - O contador incrementa a cada atribuicao candidata testada, usando o mesmo criterio do backtracking para permitir uma comparacao justa.
 - Ao esgotar `SOL` e `LUA` em uma posicao, ela volta a `VAZIO`, restaurando o estado anterior da recursao.
 
-### Relevancia para o trabalho
-
-Este arquivo atende a parte de busca exaustiva exigida no enunciado. Ele tambem e usado como referencia para comparar o efeito das podas do backtracking.
-
 ## Arquivo `BacktrackingSolver.java`
 
 `BacktrackingSolver.java` implementa o algoritmo de backtracking.
@@ -136,10 +114,6 @@ Este arquivo atende a parte de busca exaustiva exigida no enunciado. Ele tambem 
 - Ao preencher todas as celulas, a solucao passa por `isFinalValid`, que tambem confirma preenchimento e equilibrio exato.
 - A ordem de escolha das celulas e dos simbolos altera o desempenho, mas nao deve alterar a corretude nem o conjunto de solucoes possiveis.
 - As posicoes sao percorridas por linha e coluna e `SOL` e tentado antes de `LUA`. Essa ordem deterministica facilita a repeticao dos testes.
-
-### Relevancia para o trabalho
-
-Este arquivo atende a parte de backtracking exigida pelo enunciado. Ele sera onde os criterios de poda aparecerao na pratica, reduzindo o espaco de busca em comparacao com a forca bruta.
 
 ## Criterio de contagem e comparacao
 

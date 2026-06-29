@@ -11,10 +11,8 @@ public enum CellValue {
     SOL('S'),
     LUA('L');
 
-    /** Caractere persistido e exibido para o valor. */
     private final char symbol;
 
-    /** Associa um valor ao seu caractere textual. */
     CellValue(char symbol) {
         this.symbol = symbol;
     }

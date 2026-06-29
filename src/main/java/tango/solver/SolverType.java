@@ -7,35 +7,18 @@ public enum SolverType {
     BRUTE_FORCE("forca-bruta"),
     BACKTRACKING("backtracking");
 
-    private final String argumentName;
+    private final String displayName;
 
-    SolverType(String argumentName) {
-        this.argumentName = argumentName;
+    SolverType(String displayName) {
+        this.displayName = displayName;
     }
 
     /**
-     * Consulta o nome externo do algoritmo.
+     * Consulta o nome exibido para o algoritmo.
      *
-     * @return nome aceito na linha de comando
+     * @return nome exibido no terminal
      */
-    public String getArgumentName() {
-        return argumentName;
-    }
-
-    /**
-     * Converte o nome informado pelo usuario em tipo de solver.
-     *
-     * @param value nome do algoritmo, sem diferenciar maiusculas e minusculas
-     * @return tipo correspondente
-     * @throws IllegalArgumentException se o nome for desconhecido
-     */
-    public static SolverType fromArgument(String value) {
-        for (SolverType type : values()) {
-            if (type.argumentName.equalsIgnoreCase(value)) {
-                return type;
-            }
-        }
-
-        throw new IllegalArgumentException("algoritmo desconhecido: " + value);
+    public String getDisplayName() {
+        return displayName;
     }
 }

@@ -45,10 +45,6 @@ constraints:
 - **A conversao de simbolos e delegada aos enums:** `CellValue` e `ConstraintType` decidem quais caracteres sao validos. O leitor nao duplica as regras de representacao do modelo.
 - **Erros de leitura viram `IllegalArgumentException`:** para a camada da aplicacao, arquivo inexistente e conteudo invalido sao problemas da entrada fornecida e podem ser apresentados de modo uniforme.
 
-### Relevancia para o trabalho
-
-Este arquivo atende a exigencia de leitura da configuracao inicial do tabuleiro. Ele permite testar tabuleiros diferentes sem alterar o codigo-fonte.
-
 ## Arquivo `BoardPrinter.java`
 
 `BoardPrinter.java` imprime um objeto `Board` no terminal.
@@ -80,10 +76,6 @@ Restricoes:
 - **Os simbolos vem do proprio modelo:** o printer usa `getSymbol`, garantindo que leitura e impressao compartilhem a mesma representacao.
 - **Grade e restricoes sao impressas juntas:** apenas a matriz nao seria suficiente para reconstruir todo o problema informado ao solver.
 - **A ausencia de restricoes e explicita:** imprimir `Restricoes: nenhuma` diferencia corretamente uma lista vazia de uma falha de impressao.
-
-### Relevancia para o trabalho
-
-Este arquivo atende a saida esperada pelo enunciado, pois mostra o tabuleiro inicial e o tabuleiro final no console. A saida tambem pode ser usada na secao de exemplos de execucao da documentacao.
 
 ## Arquivo `InputGenerator.java`
 
@@ -118,10 +110,6 @@ solucao vazia
 - **Restricoes sao derivadas da solucao:** duas celulas iguais recebem `=` e duas diferentes recebem `x`, portanto a regra nunca contradiz o tabuleiro que originou o exemplo.
 - **Somente vizinhos ortogonais entram na lista:** uma restricao do Tango representa um sinal entre duas celulas adjacentes.
 
-### Relevancia para o trabalho
-
-Este arquivo produz entradas mais realistas e permite comparar os algoritmos em exemplos diferentes sem editar arquivos.
-
 ## Arquivo `BoardCatalog.java`
 
 `BoardCatalog.java` controla a pasta e a nomenclatura dos arquivos criados pela interface.
@@ -137,7 +125,7 @@ Este arquivo produz entradas mais realistas e permite comparar os algoritmos em 
 
 ### Decisoes logicas do `BoardCatalog`
 
-- **Existe uma unica pasta oficial:** o menu pode listar entradas sem pesquisar todo o projeto nem solicitar caminhos no uso normal.
+- **Existe uma unica pasta oficial:** o menu pode listar entradas sem pesquisar todas as pastas nem solicitar caminhos no uso normal.
 - **A origem aparece no nome:** e possivel distinguir exemplos aleatorios, digitados e importados sem abrir o arquivo.
 - **Sequencias sao independentes:** `automatico-002` significa o segundo automatico mesmo que existam varios arquivos manuais.
 - **Data e hora usam `AAAAMMDD-HHMMSS`:** essa ordem e legivel e tambem ordenavel cronologicamente.
